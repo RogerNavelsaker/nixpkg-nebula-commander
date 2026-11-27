@@ -1,0 +1,11 @@
+{
+  "kind": "git-tag",
+  "upstream": "https://github.com/NixRTR/nebula-commander.git",
+  "tag_regex": "^v[0-9]+\\.[0-9]+\\.[0-9]+$",
+  "tag_prefix": "v",
+  "version_file": "flake.nix",
+  "version_grep": "version = \"[^\"]+\"",
+  "pinned_paths": ["frontend.bun.lock"],
+  "pinned_flake_regex": "outputHash|hash = ",
+  "sync_script": "bash scripts/sync-upstream.sh"
+}

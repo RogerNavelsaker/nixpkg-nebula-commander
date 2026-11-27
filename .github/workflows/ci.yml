@@ -1,0 +1,15 @@
+name: CI & Cache Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  ci:
+    uses: RogerNavelsaker/nixpkgs/.github/workflows/reusable-ci.yml@main
+    secrets: inherit
