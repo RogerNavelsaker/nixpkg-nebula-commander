@@ -1,0 +1,14 @@
+name: Sync Upstream
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "5 */6 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    uses: RogerNavelsaker/nixpkgs/.github/workflows/reusable-sync-upstream.yml@main
+    secrets: inherit

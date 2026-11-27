@@ -1,6 +1,21 @@
 {
   description = "Rootless Nix-built OCI images for Nebula Commander";
 
+  nixConfig = {
+    extra-substituters = [
+      "https://cache.nixos.org"
+      "https://nix-community.cachix.org"
+      "https://rogernavelsaker.cachix.org"
+      "https://nacosolutions.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "rogernavelsaker.cachix.org-1:n1DtzMNhA9Rz4Kg3xlXOi/KceULu8VrMbs9WXyMFQNQ="
+      "nacosolutions.cachix.org-1:JzCiW2CLcuLXtwOVAg3SlSK/kpqWbfSFEVenyKVUlug="
+    ];
+  };
+
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/3ec636362e1816bc2f0888fa0fa2c69f1bc9e504";
 
   outputs = { nixpkgs, ... }:
@@ -8,12 +23,12 @@
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
 
-      version = "0.8.1";
+      version = "0.9.0";
       source = pkgs.fetchFromGitHub {
         owner = "NixRTR";
         repo = "nebula-commander";
         rev = "v${version}";
-        hash = "sha256-JcYg1N4YlGHHshyFxEQoiIkN85//4wo4q5KjrcuFXbk=";
+        hash = "sha256-8OMUZxGZ1GxFdXUhu/QVVc/iWndcL3Su1tuAHFnRZVY=";
       };
 
       nebula = assert pkgs.nebula.version == "1.11.2"; pkgs.nebula;
@@ -70,7 +85,7 @@
         dontUnpack = true;
         nativeBuildInputs = [ pkgs.bun ];
         outputHashMode = "recursive";
-        outputHash = "sha256-ouF8kqngvXUxFvMaTgmdWSQXC8g0IoKWnY2LxDJnMRY=";
+        outputHash = "sha256-PILlUhouWrlLIwfqhEyTWDIYItsTmAVVK3PXGI/gOKM=";
         dontFixup = true;
         installPhase = ''
           export HOME="$TMPDIR/home"
